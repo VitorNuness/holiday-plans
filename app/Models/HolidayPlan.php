@@ -14,7 +14,7 @@ class HolidayPlan extends Model
     protected function casts(): array
     {
         return [
-            'date' => 'date:YYYY-MM-DD',
+            'date' => 'date:Y-m-d',
             'participants' => 'array',
         ];
     }
