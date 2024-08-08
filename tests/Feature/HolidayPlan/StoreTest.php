@@ -80,3 +80,15 @@ it('should be a valid date for holiday plan', function () {
         'date' => 'valid date',
     ]);
 });
+
+it('should be require a location for holiday plan', function () {
+    postJson(route('plans.store'), [
+        'title' => 'Something',
+        'description' => 'Something',
+        'date' => '2024-08-08',
+        'location' => '',
+        'participants' => null,
+    ])->assertInvalid([
+        'location' => 'required',
+    ]);
+});
