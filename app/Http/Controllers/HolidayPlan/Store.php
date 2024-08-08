@@ -14,6 +14,7 @@ class Store extends Controller
             'title' => ['required', 'max:50'],
             'description' => ['max:100'],
             'date' => ['required', 'date:YYYY-MM-DD'],
+            'location' => ['required'],
         ]);
 
         return HolidayPlan::query()
