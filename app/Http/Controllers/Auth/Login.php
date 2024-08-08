@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Hash;
 
 class Login extends Controller
 {
