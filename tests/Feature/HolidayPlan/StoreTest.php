@@ -20,3 +20,15 @@ it('should be able to store a new holiday plan', function () {
         'participants' => null,
     ]);
 });
+
+it('should be require a title to holiday plan', function () {
+    postJson(route('plans.store'), [
+        'title' => '',
+        'description' => 'Something',
+        'date' => '2024-08-08',
+        'location' => 'Something',
+        'participants' => null,
+    ])->assertValid([
+        'title' => 'required',
+    ]);
+});
