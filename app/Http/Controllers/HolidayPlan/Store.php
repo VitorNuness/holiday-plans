@@ -13,6 +13,7 @@ class Store extends Controller
         $validData = $request->validate([
             'title' => ['required', 'max:50'],
             'description' => ['max:100'],
+            'date' => ['required'],
         ]);
 
         return HolidayPlan::query()
