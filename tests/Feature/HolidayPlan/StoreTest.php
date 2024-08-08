@@ -92,3 +92,15 @@ it('should be require a location for holiday plan', function () {
         'location' => 'required',
     ]);
 });
+
+it('should be max of 100 character for the location of holiday plan', function () {
+    postJson(route('plans.store'), [
+        'title' => 'Something',
+        'description' => 'Something',
+        'date' => '2024-08-08',
+        'location' => str_repeat('a', 101),
+        'participants' => null,
+    ])->assertInvalid([
+        'location' => 'greater than 100',
+    ]);
+});
