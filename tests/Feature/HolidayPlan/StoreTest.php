@@ -44,3 +44,15 @@ it('should be max of 50 character for the title of holiday plan', function () {
         'title' => 'greater than 50',
     ]);
 });
+
+it('should be max of 100 character for the description of holiday plan', function () {
+    postJson(route('plans.store'), [
+        'title' => 'Something',
+        'description' => str_repeat('a', 101),
+        'date' => '2024-08-08',
+        'location' => 'Something',
+        'participants' => null,
+    ])->assertInvalid([
+        'description' => 'greater than 100',
+    ]);
+});
