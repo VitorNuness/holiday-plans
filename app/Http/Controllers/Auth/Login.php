@@ -15,7 +15,7 @@ class Login extends Controller
             'password' => ['required'],
         ]);
 
-        if (! $token = auth()->attempt($validatedData)) {
+        if (! $token = auth('api')->attempt($validatedData)) {
             return response([], Response::HTTP_UNAUTHORIZED);
         }
 
