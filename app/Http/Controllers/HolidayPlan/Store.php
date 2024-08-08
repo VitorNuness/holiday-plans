@@ -10,7 +10,11 @@ class Store extends Controller
 {
     public function __invoke(Request $request)
     {
+        $validData = $request->validate([
+            'title' => ['required'],
+        ]);
+
         return HolidayPlan::query()
-            ->create($request->all());
+            ->create($validData);
     }
 }
