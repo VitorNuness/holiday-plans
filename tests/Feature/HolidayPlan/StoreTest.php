@@ -9,7 +9,7 @@ it('should be able to store a new holiday plan', function () {
         'description' => 'Something',
         'date' => '2024-08-08',
         'location' => 'Something',
-        'participants' => null,
+        'participants' => [],
     ])->assertSuccessful();
 
     assertDatabaseHas('holiday_plans', [
@@ -17,7 +17,7 @@ it('should be able to store a new holiday plan', function () {
         'description' => 'Something',
         'date' => '2024-08-08',
         'location' => 'Something',
-        'participants' => null,
+        'participants' => "[]",
     ]);
 });
 
@@ -27,7 +27,7 @@ it('should be require a title to holiday plan', function () {
         'description' => 'Something',
         'date' => '2024-08-08',
         'location' => 'Something',
-        'participants' => null,
+        'participants' => [],
     ])->assertInvalid([
         'title' => 'required',
     ]);
@@ -39,7 +39,7 @@ it('should be max of 50 character for the title of holiday plan', function () {
         'description' => 'Something',
         'date' => '2024-08-08',
         'location' => 'Something',
-        'participants' => null,
+        'participants' => [],
     ])->assertInvalid([
         'title' => 'greater than 50',
     ]);
@@ -51,7 +51,7 @@ it('should be max of 100 character for the description of holiday plan', functio
         'description' => str_repeat('a', 101),
         'date' => '2024-08-08',
         'location' => 'Something',
-        'participants' => null,
+        'participants' => [],
     ])->assertInvalid([
         'description' => 'greater than 100',
     ]);
@@ -63,7 +63,7 @@ it('should be require a date for holiday plan', function () {
         'description' => 'Something',
         'date' => '',
         'location' => 'Something',
-        'participants' => null,
+        'participants' => [],
     ])->assertInvalid([
         'date' => 'required',
     ]);
@@ -75,7 +75,7 @@ it('should be a valid date for holiday plan', function () {
         'description' => 'Something',
         'date' => 'aaa',
         'location' => 'Something',
-        'participants' => null,
+        'participants' => [],
     ])->assertInvalid([
         'date' => 'valid date',
     ]);
@@ -87,7 +87,7 @@ it('should be require a location for holiday plan', function () {
         'description' => 'Something',
         'date' => '2024-08-08',
         'location' => '',
-        'participants' => null,
+        'participants' => [],
     ])->assertInvalid([
         'location' => 'required',
     ]);
@@ -99,7 +99,7 @@ it('should be max of 100 character for the location of holiday plan', function (
         'description' => 'Something',
         'date' => '2024-08-08',
         'location' => str_repeat('a', 101),
-        'participants' => null,
+        'participants' => [],
     ])->assertInvalid([
         'location' => 'greater than 100',
     ]);
