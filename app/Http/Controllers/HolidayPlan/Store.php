@@ -11,7 +11,7 @@ class Store extends Controller
     public function __invoke(Request $request)
     {
         $validData = $request->validate([
-            'title' => ['required'],
+            'title' => ['required', 'max:50'],
         ]);
 
         return HolidayPlan::query()
