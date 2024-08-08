@@ -1,9 +1,16 @@
 <?php
 
+use App\Models\User;
+use Laravel\Passport\Passport;
+
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\postJson;
 
 it('should be able to store a new holiday plan', function () {
+    $user = User::factory()->create();
+
+    Passport::actingAs($user);
+
     postJson(route('plans.store'), [
         'title' => 'Something',
         'description' => 'Something',
@@ -22,6 +29,10 @@ it('should be able to store a new holiday plan', function () {
 });
 
 it('should be require a title to holiday plan', function () {
+    $user = User::factory()->create();
+
+    Passport::actingAs($user);
+
     postJson(route('plans.store'), [
         'title' => '',
         'description' => 'Something',
@@ -34,6 +45,10 @@ it('should be require a title to holiday plan', function () {
 });
 
 it('should be max of 50 character for the title of holiday plan', function () {
+    $user = User::factory()->create();
+
+    Passport::actingAs($user);
+
     postJson(route('plans.store'), [
         'title' => str_repeat('a', 51),
         'description' => 'Something',
@@ -46,6 +61,10 @@ it('should be max of 50 character for the title of holiday plan', function () {
 });
 
 it('should be max of 100 character for the description of holiday plan', function () {
+    $user = User::factory()->create();
+
+    Passport::actingAs($user);
+
     postJson(route('plans.store'), [
         'title' => 'Something',
         'description' => str_repeat('a', 101),
@@ -58,6 +77,10 @@ it('should be max of 100 character for the description of holiday plan', functio
 });
 
 it('should be require a date for holiday plan', function () {
+    $user = User::factory()->create();
+
+    Passport::actingAs($user);
+
     postJson(route('plans.store'), [
         'title' => 'Something',
         'description' => 'Something',
@@ -70,6 +93,10 @@ it('should be require a date for holiday plan', function () {
 });
 
 it('should be a valid date for holiday plan', function () {
+    $user = User::factory()->create();
+
+    Passport::actingAs($user);
+
     postJson(route('plans.store'), [
         'title' => 'Something',
         'description' => 'Something',
@@ -82,6 +109,10 @@ it('should be a valid date for holiday plan', function () {
 });
 
 it('should be require a location for holiday plan', function () {
+    $user = User::factory()->create();
+
+    Passport::actingAs($user);
+
     postJson(route('plans.store'), [
         'title' => 'Something',
         'description' => 'Something',
@@ -94,6 +125,10 @@ it('should be require a location for holiday plan', function () {
 });
 
 it('should be max of 100 character for the location of holiday plan', function () {
+    $user = User::factory()->create();
+
+    Passport::actingAs($user);
+
     postJson(route('plans.store'), [
         'title' => 'Something',
         'description' => 'Something',

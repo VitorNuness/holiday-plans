@@ -1,12 +1,15 @@
 <?php
 
+use App\Models\User;
 use Database\Seeders\HolidayPlanSeeder;
-
-use function Pest\Laravel\get;
+use Laravel\Passport\Passport;
 use function Pest\Laravel\getJson;
 
 it('should be get holiday plans paginated', function () {
     (new HolidayPlanSeeder)->run();
+    $user = User::factory()->create();
+
+    Passport::actingAs($user);
 
     getJson(route('plans.index'))
         ->assertSuccessful()
