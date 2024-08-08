@@ -3,13 +3,15 @@
 use App\Models\HolidayPlan;
 use App\Models\User;
 use Laravel\Passport\Passport;
+
+use function Pest\Laravel\actingAs;
 use function Pest\Laravel\getJson;
 
 it('should be download a holiday plan pdf', function () {
     $holidayPlan = HolidayPlan::factory()->create();
     $user = User::factory()->create();
 
-    Passport::actingAs($user);
+    actingAs($user, 'api');
 
     getJson(route('plans.pdf', $holidayPlan->id))
         ->assertSuccessful()
@@ -20,7 +22,7 @@ it('should dont download a holiday plan pdf', function () {
     $user = User::factory()->create();
     $holidayPlan = HolidayPlan::factory()->create();
 
-    Passport::actingAs($user);
+    actingAs($user, 'api');
 
     getJson(route('plans.pdf', $holidayPlan->id + 1))
         ->assertNotFound();
