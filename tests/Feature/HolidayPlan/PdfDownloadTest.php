@@ -2,20 +2,20 @@
 
 use App\Models\HolidayPlan;
 use App\Models\User;
-use Laravel\Passport\Passport;
+
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\getJson;
 
 it('should be download a holiday plan pdf', function () {
-    $holidayPlan = HolidayPlan::factory()->create();
     $user = User::factory()->create();
+    $holidayPlan = HolidayPlan::factory()->create(['user_id' => $user]);
 
     actingAs($user, 'api');
 
     getJson(route('plans.pdf', $holidayPlan->id))
         ->assertSuccessful()
-        ->assertDownload(str_replace(' ', '_', $holidayPlan->title) . '.pdf');
+        ->assertDownload('holiday_plan.pdf');
 });
 
 it('should dont download a holiday plan pdf', function () {
@@ -24,17 +24,22 @@ it('should dont download a holiday plan pdf', function () {
 
     actingAs($user, 'api');
 
-    getJson(route('plans.pdf', $holidayPlan->id + 1))
-        ->assertNotFound();
+    getJson(route('plans.pdf', $holidayPlan->id))
+        ->assertForbidden();
 });
 
 it('should get holiday data for the pdf view', function () {
     $holidayPlan = HolidayPlan::factory()->create();
 
-    $this->view('pdf.holiday-plan', ['data' => $holidayPlan])
+    $view = $this->view('pdf.holiday-plan', ['data' => $holidayPlan]);
+
+    $view
         ->assertSee($holidayPlan->title)
         ->assertSee($holidayPlan->description)
         ->assertSee($holidayPlan->date->format('Y-m-d'))
-        ->assertSee($holidayPlan->location)
-        ->assertSee($holidayPlan->participants);
+        ->assertSee($holidayPlan->location);
+
+    foreach ($holidayPlan->participants as $participant) {
+        $view->assertSee($participant);
+    }
 });

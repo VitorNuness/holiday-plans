@@ -2,7 +2,7 @@
 
 use App\Models\HolidayPlan;
 use App\Models\User;
-use Laravel\Passport\Passport;
+
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
@@ -10,8 +10,8 @@ use function Pest\Laravel\assertDatabaseMissing;
 use function Pest\Laravel\putJson;
 
 it('should be update a holiday plan', function () {
-    $holidayPlan = HolidayPlan::factory()->create();
     $user = User::factory()->create();
+    $holidayPlan = HolidayPlan::factory()->create(['user_id' => $user]);
 
     actingAs($user, 'api');
 
@@ -35,32 +35,24 @@ it('should be update a holiday plan', function () {
 });
 
 it('should dont update a holiday plan', function () {
-    $user = User::factory()->create();
     $holidayPlan = HolidayPlan::factory()->create();
+    $user = User::factory()->create();
 
     actingAs($user, 'api');
 
-    putJson(route('plans.update', $holidayPlan->id + 1), [
+    putJson(route('plans.update', $holidayPlan->id), [
         'title' => 'Something',
         'description' => 'Something',
         'date' => '2024-08-08',
         'location' => 'Something',
         'participants' => [],
-    ])->assertNotFound();
-
-    assertDatabaseMissing('holiday_plans', [
-        'title' => 'Something',
-        'description' => 'Something',
-        'date' => '2024-08-08',
-        'location' => 'Something',
-        'participants' => "[]",
-    ]);
+    ])->assertForbidden();
 });
 
 
 it('should be require a title to holiday plan', function () {
-    $holidayPlan = HolidayPlan::factory()->create();
     $user = User::factory()->create();
+    $holidayPlan = HolidayPlan::factory()->create(['user_id' => $user]);
 
     actingAs($user, 'api');
 
@@ -76,8 +68,8 @@ it('should be require a title to holiday plan', function () {
 });
 
 it('should be max of 50 character for the title of holiday plan', function () {
-    $holidayPlan = HolidayPlan::factory()->create();
     $user = User::factory()->create();
+    $holidayPlan = HolidayPlan::factory()->create(['user_id' => $user]);
 
     actingAs($user, 'api');
 
@@ -93,8 +85,8 @@ it('should be max of 50 character for the title of holiday plan', function () {
 });
 
 it('should be max of 100 character for the description of holiday plan', function () {
-    $holidayPlan = HolidayPlan::factory()->create();
     $user = User::factory()->create();
+    $holidayPlan = HolidayPlan::factory()->create(['user_id' => $user]);
 
     actingAs($user, 'api');
 
@@ -110,8 +102,8 @@ it('should be max of 100 character for the description of holiday plan', functio
 });
 
 it('should be require a date for holiday plan', function () {
-    $holidayPlan = HolidayPlan::factory()->create();
     $user = User::factory()->create();
+    $holidayPlan = HolidayPlan::factory()->create(['user_id' => $user]);
 
     actingAs($user, 'api');
 
@@ -127,8 +119,8 @@ it('should be require a date for holiday plan', function () {
 });
 
 it('should be a valid date for holiday plan', function () {
-    $holidayPlan = HolidayPlan::factory()->create();
     $user = User::factory()->create();
+    $holidayPlan = HolidayPlan::factory()->create(['user_id' => $user]);
 
     actingAs($user, 'api');
 
@@ -144,8 +136,8 @@ it('should be a valid date for holiday plan', function () {
 });
 
 it('should be require a location for holiday plan', function () {
-    $holidayPlan = HolidayPlan::factory()->create();
     $user = User::factory()->create();
+    $holidayPlan = HolidayPlan::factory()->create(['user_id' => $user]);
 
     actingAs($user, 'api');
 
@@ -161,8 +153,8 @@ it('should be require a location for holiday plan', function () {
 });
 
 it('should be max of 100 character for the location of holiday plan', function () {
-    $holidayPlan = HolidayPlan::factory()->create();
     $user = User::factory()->create();
+    $holidayPlan = HolidayPlan::factory()->create(['user_id' => $user]);
 
     actingAs($user, 'api');
 
