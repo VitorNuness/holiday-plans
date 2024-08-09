@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class Store extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): HolidayPlan
     {
         $validData = $request->validate([
             'title' => ['required', 'max:50'],
@@ -18,7 +18,6 @@ class Store extends Controller
             'participants' => ['array'],
         ]);
 
-        return HolidayPlan::query()
-            ->create($validData);
+        return auth('api')->user()->holidayPlans()->create($validData);
     }
 }
