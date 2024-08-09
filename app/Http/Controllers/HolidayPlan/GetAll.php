@@ -10,6 +10,8 @@ class GetAll extends Controller
 {
     public function __invoke(): LengthAwarePaginator
     {
-        return auth('api')->user()->holidayPlans()->paginate();
+        return HolidayPlan::query()
+            ->where('user_id', '=', auth()->user()->id)
+            ->paginate();
     }
 }
