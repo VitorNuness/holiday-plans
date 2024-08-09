@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,6 +23,7 @@ class HolidayPlanFactory extends Factory
             'date' => fake()->date(),
             'location' => fake()->text(100),
             'participants' => [fake()->name(), fake()->name(), fake()->name()],
+            'user_id' => User::factory(),
         ];
     }
 }
