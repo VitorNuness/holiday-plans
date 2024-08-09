@@ -21,7 +21,7 @@ class HolidayPlanFactory extends Factory
             'description' => fake()->text(255),
             'date' => fake()->date(),
             'location' => fake()->text(100),
-            'participants' => null,
+            'participants' => [fake()->name(), fake()->name(), fake()->name()],
         ];
     }
 }
