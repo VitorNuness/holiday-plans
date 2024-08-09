@@ -12,6 +12,6 @@ class PdfDownload extends Controller
     public function __invoke(HolidayPlan $holidayPlan): Response
     {
         $pdf = Pdf::loadView('pdf.holiday-plan', ["data" => $holidayPlan]);
-        return $pdf->download(str_replace(' ', '_', $holidayPlan->title) . '.pdf');
+        return $pdf->download('holiday_plan.pdf');
     }
 }
