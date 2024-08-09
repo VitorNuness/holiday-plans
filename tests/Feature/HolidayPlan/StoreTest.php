@@ -24,7 +24,7 @@ it('should be able to store a new holiday plan', function () {
         'description' => 'Something',
         'date' => '2024-08-08',
         'location' => 'Something',
-        'participants' => "[]",
+        'participants' => '[]',
     ]);
 });
 

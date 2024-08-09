@@ -14,6 +14,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
-        (new HolidayPlanSeeder())->run();
+        (new HolidayPlanSeeder)->run();
     }
 }

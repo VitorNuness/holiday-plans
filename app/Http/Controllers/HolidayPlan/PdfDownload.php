@@ -14,7 +14,8 @@ class PdfDownload extends Controller
     {
         Gate::authorize('download', $holidayPlan);
 
-        $pdf = Pdf::loadView('pdf.holiday-plan', ["data" => $holidayPlan]);
+        $pdf = Pdf::loadView('pdf.holiday-plan', ['data' => $holidayPlan]);
+
         return $pdf->download('holiday_plan.pdf');
     }
 }

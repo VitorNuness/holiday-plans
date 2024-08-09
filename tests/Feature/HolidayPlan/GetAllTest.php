@@ -2,8 +2,6 @@
 
 use App\Models\HolidayPlan;
 use App\Models\User;
-use Database\Seeders\HolidayPlanSeeder;
-
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\getJson;

@@ -3,10 +3,8 @@
 use App\Models\HolidayPlan;
 use App\Models\User;
 
-
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
-use function Pest\Laravel\assertDatabaseMissing;
 use function Pest\Laravel\putJson;
 
 it('should be update a holiday plan', function () {
@@ -30,7 +28,7 @@ it('should be update a holiday plan', function () {
         'description' => 'Something',
         'date' => '2024-08-08',
         'location' => 'Something',
-        'participants' => "[]",
+        'participants' => '[]',
     ]);
 });
 
@@ -48,7 +46,6 @@ it('should dont update a holiday plan', function () {
         'participants' => [],
     ])->assertForbidden();
 });
-
 
 it('should be require a title to holiday plan', function () {
     $user = User::factory()->create();
