@@ -7,7 +7,7 @@ This API allows users to manage their holiday plans and download them as PDFs.
 
 - PHP 8.2^
 - Composer 2.7^
-- Docker (with start from sail)
+- Docker (with start from Sail)
 
 ## Summary
 
@@ -129,7 +129,18 @@ This application is a API RESTful to make CRUD operations for user holiday plans
 **Response**
 ```json
 {
-    "token": string
+    "message": "Register as been successfully.",
+    "data": [
+        {
+        "user": [
+            {
+                "name": string,
+                "email": string
+            }
+        ],
+        "token": string
+        }
+    ]
 }
 ```
 
@@ -150,7 +161,18 @@ This application is a API RESTful to make CRUD operations for user holiday plans
 **Response**
 ```json
 {
-    "token": string
+    "message": "Login as been successfully.",
+    "data": [
+        {
+        "user": [
+            {
+                "name": string,
+                "email": string
+            }
+        ],
+        "token": string
+        }
+    ]
 }
 ```
 ---
@@ -181,15 +203,23 @@ The methods is necessary the header has: ```'Authorization': Bearer <token>```.
 **Response**
 ```json
 {
-    "id": string,
-    "title": string,
-    "description": string,
-    "date": date,
-    "location": string,
-    "participants": array,
-    "user_id": string,
-    "created_at": timestamp,
-    "updated_at": timestamp
+    "message": "Holiday Plan has been created successfully!",
+    "data": [
+        {
+            "id": string,
+            "title": string,
+            "description": string,
+            "date": date,
+            "location": string,
+            "participants": array,
+            "created_by": [
+                {
+                    "name": string,
+                    "email": string
+                }
+            ]
+        }
+    ]
 }
 ```
 
@@ -205,15 +235,18 @@ The methods is necessary the header has: ```'Authorization': Bearer <token>```.
     "current_page": int,
     "data": [
         {
-        "id": string,
-        "title": string,
-        "description": string,
-        "date": date,
-        "location": string,
-        "participants": array,
-        "user_id": string,
-        "created_at": timestamp,
-        "updated_at": timestamp
+            "id": string,
+            "title": string,
+            "description": string,
+            "date": date,
+            "location": string,
+            "participants": array,
+            "created_by": [
+                {
+                    "name": string,
+                    "email": string
+                }
+            ]
         }
     ],
     "first_page_url": string,
@@ -222,19 +255,19 @@ The methods is necessary the header has: ```'Authorization': Bearer <token>```.
     "last_page_url": string,
     "links": [
         {
-        "url": string,
-        "label": string,
-        "active": boolean
+            "url": string,
+            "label": string,
+            "active": boolean
         },
         {
-        "url": string,
-        "label": string,
-        "active": boolean
+            "url": string,
+            "label": string,
+            "active": boolean
         },
         {
-        "url": string,
-        "label": string,
-        "active": boolean
+            "url": string,
+            "label": string,
+            "active": boolean
         }
     ],
     "next_page_url": string,
@@ -255,15 +288,22 @@ The methods is necessary the header has: ```'Authorization': Bearer <token>```.
 **Response**
 ```json
 {
-    "id": string,
-    "title": string,
-    "description": string,
-    "date": date,
-    "location": string,
-    "participants": array,
-    "user_id": string,
-    "created_at": timestamp,
-    "updated_at": timestamp
+    data: [
+        {
+            "id": string,
+            "title": string,
+            "description": string,
+            "date": date,
+            "location": string,
+            "participants": array,
+            "created_by": [
+                {
+                    "name": string,
+                    "email": string
+                }
+            ]
+        }
+    ]
 }
 ```
 
@@ -287,15 +327,23 @@ The methods is necessary the header has: ```'Authorization': Bearer <token>```.
 **Response**
 ```json
 {
-    "id": string,
-    "title": string,
-    "description": string,
-    "date": date,
-    "location": string,
-    "participants": array,
-    "user_id": string,
-    "created_at": timestamp,
-    "updated_at": timestamp
+    "message": "Update has been successfully!",
+    "data": [
+        {
+            "id": string,
+            "title": string,
+            "description": string,
+            "date": date,
+            "location": string,
+            "participants": array,
+            "created_by": [
+                        {
+                            "name": string,
+                            "email": string
+                        }
+                    ]
+        }
+    ]
 }
 ```
 
@@ -308,7 +356,8 @@ The methods is necessary the header has: ```'Authorization': Bearer <token>```.
 **Response**
 ```json
 {
-    
+    "message": "Delete as been successfully.",
+    "data": []
 }
 ```
 
