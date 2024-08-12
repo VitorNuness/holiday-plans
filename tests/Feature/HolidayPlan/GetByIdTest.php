@@ -13,7 +13,17 @@ it('should be get a holiday plan', function () {
     actingAs($user, 'api');
     getJson(route('plans.show', $holidayPlan->id))
         ->assertSuccessful()
-        ->assertJsonIsObject();
+        ->assertJsonStructure([
+            'data' => [
+                'id',
+                'title',
+                'description',
+                'date',
+                'location',
+                'participants',
+                'created_by'
+            ]
+        ]);
 });
 
 it('should dont get a holiday plan', function () {

@@ -21,7 +21,10 @@ it('should be update a holiday plan', function () {
         'participants' => [],
     ])
         ->assertSuccessful()
-        ->assertJsonIsObject();
+        ->assertJsonStructure([
+            'message',
+            'data'
+        ]);
 
     assertDatabaseHas('holiday_plans', [
         'title' => 'Something',

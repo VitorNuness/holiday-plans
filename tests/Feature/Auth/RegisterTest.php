@@ -12,7 +12,13 @@ it('should be able to register a new user and retrieve the token to auth', funct
         'password' => 'password',
         'password_confirmation' => 'password',
     ])->assertSuccessful()
-        ->assertJsonStructure(['token']);
+        ->assertJsonStructure([
+            'message',
+            'data' => [
+                'user',
+                'token'
+            ]
+        ]);
 
     assertDatabaseHas('users', [
         'name' => 'John Doe',

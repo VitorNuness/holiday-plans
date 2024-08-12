@@ -14,7 +14,13 @@ it('should be able user to login', function () {
         'email' => 'john.doe@email.com',
         'password' => 'password',
     ])->assertSuccessful()
-        ->assertJsonStructure(['token']);
+        ->assertJsonStructure([
+            'message',
+            'data' => [
+                'user',
+                'token'
+            ]
+        ]);
 });
 
 it('should be require email to login', function () {
@@ -44,5 +50,9 @@ it('should be dont login with wrong credentials', function () {
     postJson(route('auth.login'), [
         'email' => 'john.doe@email.com',
         'password' => 'aaaaaaa',
-    ])->assertUnauthorized();
+    ])->assertUnauthorized()
+        ->assertJsonStructure([
+            'message',
+            'data'
+        ]);
 });

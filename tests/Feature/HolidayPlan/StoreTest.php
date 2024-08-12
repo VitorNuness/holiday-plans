@@ -17,7 +17,11 @@ it('should be able to store a new holiday plan', function () {
         'date' => '2024-08-08',
         'location' => 'Something',
         'participants' => [],
-    ])->assertSuccessful();
+    ])->assertSuccessful()
+        ->assertJsonStructure([
+            'message',
+            'data'
+        ]);
 
     assertDatabaseHas('holiday_plans', [
         'title' => 'Something',

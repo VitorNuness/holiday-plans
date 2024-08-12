@@ -28,5 +28,5 @@ it('should be dont get holiday plans of another user', function () {
     $response
         ->assertSuccessful()
         ->assertJsonIsObject();
-    expect($response['total'])->toBe(0);
+    expect($response['data'])->toBe([]);
 });

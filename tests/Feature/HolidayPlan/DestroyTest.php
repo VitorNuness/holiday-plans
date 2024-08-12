@@ -12,7 +12,10 @@ it('should be delete a holiday plan', function () {
 
     actingAs($user, 'api');
     deleteJson(route('plans.destroy', $holidayPlan->id))
-        ->assertNoContent();
+        ->assertJsonStructure([
+            'message',
+            'data'
+        ]);
 });
 
 it('should dont delete a holiday plan', function () {
