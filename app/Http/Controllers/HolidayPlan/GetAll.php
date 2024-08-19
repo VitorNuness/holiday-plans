@@ -15,6 +15,7 @@ class GetAll extends Controller
         $holidayPlans = auth('api')
             ->user()
             ->holidayPlans()
+            ->orderBy('date')
             ->paginate();
 
         return HolidayPlanResource::collection($holidayPlans);
