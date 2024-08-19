@@ -14,7 +14,7 @@ class Store extends Controller
         $validData = $request->validate([
             'title' => ['required', 'max:50'],
             'description' => ['max:100'],
-            'date' => ['required', 'date:YYYY-MM-DD'],
+            'date' => ['required', 'date_format:Y-m-d'],
             'location' => ['required', 'max:100'],
             'participants' => ['array'],
         ]);
