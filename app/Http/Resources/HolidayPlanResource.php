@@ -13,7 +13,7 @@ class HolidayPlanResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            'date' => $this->date,
+            'date' => $this->date->format('Y-m-d'),
             'location' => $this->location,
             'participants' => $this->participants,
             'created_by' => UserResource::make($this->user),
