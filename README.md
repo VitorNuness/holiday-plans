@@ -119,28 +119,24 @@ This application is a API RESTful to make CRUD operations for user holiday plans
 **Request**
 ```json
 {
-    "name": string,
-    "email": string,
-    "password": date,
-    "password_confirmation": string
+  "name": string,
+  "email": string,
+  "password": date,
+  "password_confirmation": string
 }
 ```
 
 **Response**
 ```json
 {
-    "message": "Register as been successfully.",
-    "data": [
-        {
-        "user": [
-            {
-                "name": string,
-                "email": string
-            }
-        ],
-        "token": string
-        }
-    ]
+  "message": "Register as been successfully.",
+  "data": {
+    "user": {
+      "name": string,
+      "email": string
+    },
+    "token": string
+  }
 }
 ```
 
@@ -153,26 +149,22 @@ This application is a API RESTful to make CRUD operations for user holiday plans
 **Request**
 ```json
 {
-    "email": string,
-    "password": string
+  "email": string,
+  "password": string
 }
 ```
 
 **Response**
 ```json
 {
-    "message": "Login as been successfully.",
-    "data": [
-        {
-        "user": [
-            {
-                "name": string,
-                "email": string
-            }
-        ],
-        "token": string
-        }
-    ]
+  "message": "Login as been successfully.",
+  "data": {
+    "user": {
+      "name": string,
+      "email": string
+    },
+    "token": string
+  }
 }
 ```
 ---
@@ -192,34 +184,32 @@ The methods is necessary the header has: ```'Authorization': Bearer <token>```.
 **Request**
 ```json
 {
-    "title": string,
-    "description": string,
-    "date": date,
-    "location": string,
-    "participants": array
+  "title": string,
+  "description": string,
+  "date": date,
+  "location": string,
+  "participants": array
 }
 ```
 
 **Response**
 ```json
 {
-    "message": "Holiday Plan has been created successfully!",
-    "data": [
-        {
-            "id": string,
-            "title": string,
-            "description": string,
-            "date": date,
-            "location": string,
-            "participants": array,
-            "created_by": [
-                {
-                    "name": string,
-                    "email": string
-                }
-            ]
-        }
-    ]
+  "message": "Holiday Plan has been created successfully!",
+  "data": {
+    "id": string,
+    "title": string,
+    "description": string,
+    "date": date,
+    "location": string,
+    "participants": array,
+    "created_by": {
+      "user" : {
+        "name": string,
+        "email": string
+      }
+    }
+  }
 }
 ```
 
@@ -232,50 +222,53 @@ The methods is necessary the header has: ```'Authorization': Bearer <token>```.
 **Response**
 ```json
 {
-    "current_page": int,
-    "data": [
-        {
-            "id": string,
-            "title": string,
-            "description": string,
-            "date": date,
-            "location": string,
-            "participants": array,
-            "created_by": [
-                {
-                    "name": string,
-                    "email": string
-                }
-            ]
+  "current_page": int,
+  "data": [
+    {
+    "message": "Holiday Plan has been created successfully!",
+    "data": {
+      "id": string,
+      "title": string,
+      "description": string,
+      "date": date,
+      "location": string,
+      "participants": array,
+      "created_by": {
+        "user" : {
+          "name": string,
+          "email": string
         }
-    ],
-    "first_page_url": string,
-    "from": string,
-    "last_page": int,
-    "last_page_url": string,
-    "links": [
-        {
-            "url": string,
-            "label": string,
-            "active": boolean
-        },
-        {
-            "url": string,
-            "label": string,
-            "active": boolean
-        },
-        {
-            "url": string,
-            "label": string,
-            "active": boolean
-        }
-    ],
-    "next_page_url": string,
-    "path": string,
-    "per_page": int,
-    "prev_page_url": string,
-    "to": string,
-    "total": int
+      }
+    }
+  } 
+  ],
+  "first_page_url": string,
+  "from": string,
+  "last_page": int,
+  "last_page_url": string,
+  "links": [
+    {
+    "url": string,
+    "label": string,
+    "active": boolean
+    },
+    {
+    "url": string,
+    "label": string,
+    "active": boolean
+    },
+    {
+    "url": string,
+    "label": string,
+    "active": boolean
+    }
+  ],
+  "next_page_url": string,
+  "path": string,
+  "per_page": int,
+  "prev_page_url": string,
+  "to": string,
+  "total": int
 }
 ```
 
@@ -316,34 +309,32 @@ The methods is necessary the header has: ```'Authorization': Bearer <token>```.
 **Request**
 ```json
 {
-    "title": string,
-    "description": string,
-    "date": date,
-    "location": string,
-    "participants": array
+  "title": string,
+  "description": string,
+  "date": date,
+  "location": string,
+  "participants": array
 }
 ```
 
 **Response**
 ```json
 {
-    "message": "Update has been successfully!",
-    "data": [
-        {
-            "id": string,
-            "title": string,
-            "description": string,
-            "date": date,
-            "location": string,
-            "participants": array,
-            "created_by": [
-                        {
-                            "name": string,
-                            "email": string
-                        }
-                    ]
-        }
-    ]
+  "message": "Update has been successfully!",
+  "data": {
+    "id": string,
+    "title": string,
+    "description": string,
+    "date": date,
+    "location": string,
+    "participants": array,
+    "created_by": {
+      "user" : {
+        "name": string,
+        "email": string
+      }
+    }
+  }
 }
 ```
 
@@ -356,8 +347,8 @@ The methods is necessary the header has: ```'Authorization': Bearer <token>```.
 **Response**
 ```json
 {
-    "message": "Delete as been successfully.",
-    "data": []
+  "message": "Delete has been successfully.",
+  "data": []
 }
 ```
 
